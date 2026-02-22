@@ -1,8 +1,21 @@
+export type DietaryTag = 'vegan' | 'vegetarian' | 'keto' | 'high-protein' | 'low-carb' | 'gluten-free';
+
+export type CuisineCategory =
+  | 'Indian Cuisine'
+  | 'Continental'
+  | 'Asian'
+  | 'Salads'
+  | 'Protein Bowls'
+  | 'Healthy Drinks'
+  | 'Smoothies'
+  | 'Desserts'
+  | 'Pastries';
+
 export interface FoodItem {
   id: string;
   name: string;
   emoji: string;
-  category: string;
+  category: CuisineCategory;
   calories: number;
   protein: number;
   carbs: number;
@@ -11,9 +24,19 @@ export interface FoodItem {
   sugar: number;
   vitamins: string[];
   allergens: string[];
+  dietaryTags: DietaryTag[];
   pricePerServing: number;
   servingSize: string;
   servingGrams: number;
+  image?: string;
+  description: string;
+  isPopular?: boolean;
+}
+
+export interface CartItem {
+  id: string;
+  foodItem: FoodItem;
+  quantity: number;
 }
 
 export interface MealEntry {
@@ -36,12 +59,34 @@ export interface UserProfile {
   goal: 'lean-bulk' | 'fat-loss' | 'maintain' | 'muscle-gain';
   dailyGoal: DailyGoal;
   allergies: string[];
+  dietaryPreferences: DietaryTag[];
 }
 
 export const MEAL_TYPES = ['breakfast', 'lunch', 'dinner', 'snack'] as const;
 
 export const ALLERGY_LIST = [
   'Gluten', 'Dairy', 'Nuts', 'Peanuts', 'Soy', 'Eggs', 'Fish', 'Shellfish', 'Sesame', 'Sulfites'
+];
+
+export const DIETARY_FILTERS: { id: DietaryTag; label: string; emoji: string }[] = [
+  { id: 'vegan', label: 'Vegan', emoji: '🌱' },
+  { id: 'vegetarian', label: 'Vegetarian', emoji: '🥬' },
+  { id: 'keto', label: 'Keto', emoji: '🥑' },
+  { id: 'high-protein', label: 'High Protein', emoji: '💪' },
+  { id: 'low-carb', label: 'Low Carb', emoji: '🔥' },
+  { id: 'gluten-free', label: 'Gluten Free', emoji: '🌾' },
+];
+
+export const CUISINE_CATEGORIES: { id: CuisineCategory; emoji: string }[] = [
+  { id: 'Indian Cuisine', emoji: '🇮🇳' },
+  { id: 'Continental', emoji: '🍽️' },
+  { id: 'Asian', emoji: '🥢' },
+  { id: 'Salads', emoji: '🥗' },
+  { id: 'Protein Bowls', emoji: '🥣' },
+  { id: 'Healthy Drinks', emoji: '🍵' },
+  { id: 'Smoothies', emoji: '🥤' },
+  { id: 'Desserts', emoji: '🍫' },
+  { id: 'Pastries', emoji: '🥐' },
 ];
 
 export const FITNESS_GOALS = [
