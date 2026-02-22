@@ -1,47 +1,52 @@
-import { useState, useCallback } from 'react';
-import { MealEntry, FoodItem, UserProfile, DailyGoal, GOAL_DEFAULTS } from '@/types/nutrition';
+import { useState, useCallback, useMemo } from 'react';
+import { CartItem, FoodItem, UserProfile, DailyGoal, DietaryTag, GOAL_DEFAULTS } from '@/types/nutrition';
 
 const DEFAULT_PROFILE: UserProfile = {
   name: 'User',
   goal: 'maintain',
   dailyGoal: GOAL_DEFAULTS['maintain'],
   allergies: [],
+  dietaryPreferences: [],
 };
 
 export function useNutrition() {
-  const [meals, setMeals] = useState<MealEntry[]>([]);
+  const [cart, setCart] = useState<CartItem[]>([]);
   const [profile, setProfile] = useState<UserProfile>(DEFAULT_PROFILE);
 
-  const addMeal = useCallback((foodItem: FoodItem, quantity: number, mealType: MealEntry['mealType']) => {
-    const entry: MealEntry = {
-      id: crypto.randomUUID(),
-      foodItem,
-      quantity,
-      mealType,
-      timestamp: new Date(),
-    };
-    setMeals(prev => [...prev, entry]);
+  const addToCart = useCallback((foodItem: FoodItem, quantity: number = 1) => {
+    setCart(prev => {
+      const existing = prev.find(c => c.foodItem.id === foodItem.id);
+      if (existing) {
+        return prev.map(c => c.foodItem.id === foodItem.id ? { ...c, quantity: c.quantity + quantity } : c);
+      }
+      return [...prev, { id: crypto.randomUUID(), foodItem, quantity }];
+    });
   }, []);
 
-  const removeMeal = useCallback((id: string) => {
-    setMeals(prev => prev.filter(m => m.id !== id));
+  const removeFromCart = useCallback((id: string) => {
+    setCart(prev => prev.filter(c => c.id !== id));
   }, []);
 
-  const todaysMeals = meals.filter(m => {
-    const today = new Date();
-    return m.timestamp.toDateString() === today.toDateString();
-  });
+  const updateCartQuantity = useCallback((id: string, quantity: number) => {
+    if (quantity <= 0) {
+      setCart(prev => prev.filter(c => c.id !== id));
+    } else {
+      setCart(prev => prev.map(c => c.id === id ? { ...c, quantity } : c));
+    }
+  }, []);
 
-  const dailyTotals = todaysMeals.reduce(
-    (acc, m) => ({
-      calories: acc.calories + m.foodItem.calories * m.quantity,
-      protein: acc.protein + m.foodItem.protein * m.quantity,
-      carbs: acc.carbs + m.foodItem.carbs * m.quantity,
-      fats: acc.fats + m.foodItem.fats * m.quantity,
-      cost: acc.cost + m.foodItem.pricePerServing * m.quantity,
-    }),
-    { calories: 0, protein: 0, carbs: 0, fats: 0, cost: 0 }
-  );
+  const cartTotals = useMemo(() =>
+    cart.reduce(
+      (acc, c) => ({
+        calories: acc.calories + c.foodItem.calories * c.quantity,
+        protein: acc.protein + c.foodItem.protein * c.quantity,
+        carbs: acc.carbs + c.foodItem.carbs * c.quantity,
+        fats: acc.fats + c.foodItem.fats * c.quantity,
+        cost: acc.cost + c.foodItem.pricePerServing * c.quantity,
+        items: acc.items + c.quantity,
+      }),
+      { calories: 0, protein: 0, carbs: 0, fats: 0, cost: 0, items: 0 }
+    ), [cart]);
 
   const updateGoal = useCallback((goal: UserProfile['goal']) => {
     setProfile(prev => ({
@@ -55,14 +60,22 @@ export function useNutrition() {
     setProfile(prev => ({ ...prev, allergies }));
   }, []);
 
+  const updateDietaryPreferences = useCallback((dietaryPreferences: DietaryTag[]) => {
+    setProfile(prev => ({ ...prev, dietaryPreferences }));
+  }, []);
+
+  const clearCart = useCallback(() => setCart([]), []);
+
   return {
-    meals: todaysMeals,
-    allMeals: meals,
-    dailyTotals,
+    cart,
+    cartTotals,
     profile,
-    addMeal,
-    removeMeal,
+    addToCart,
+    removeFromCart,
+    updateCartQuantity,
+    clearCart,
     updateGoal,
     updateAllergies,
+    updateDietaryPreferences,
   };
 }

@@ -51,7 +51,6 @@ export default function AISuggestions({ profile, totals }: Props) {
         </div>
       </div>
 
-      {/* Dynamic insight */}
       {totals.calories > 0 && (
         <motion.div
           initial={{ opacity: 0, y: 8 }}
@@ -66,7 +65,6 @@ export default function AISuggestions({ profile, totals }: Props) {
         </motion.div>
       )}
 
-      {/* Tips */}
       {goalTips.map((tip, i) => (
         <motion.div
           key={i}
