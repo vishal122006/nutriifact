@@ -11,6 +11,19 @@ export type CuisineCategory =
   | 'Desserts'
   | 'Pastries';
 
+export interface Ingredient {
+  id: string;
+  name: string;
+  emoji: string;
+  calories: number;
+  protein: number;
+  carbs: number;
+  fats: number;
+  price: number;
+  isDefault: boolean;
+  isRemovable: boolean;
+}
+
 export interface FoodItem {
   id: string;
   name: string;
@@ -31,6 +44,19 @@ export interface FoodItem {
   image?: string;
   description: string;
   isPopular?: boolean;
+  ingredients?: Ingredient[];
+}
+
+export interface CustomizedFood {
+  foodItem: FoodItem;
+  addedIngredients: string[];
+  removedIngredients: string[];
+  portionMultiplier: number;
+  totalCalories: number;
+  totalProtein: number;
+  totalCarbs: number;
+  totalFats: number;
+  totalPrice: number;
 }
 
 export interface CartItem {

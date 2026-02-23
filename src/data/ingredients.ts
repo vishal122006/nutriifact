@@ -1,0 +1,65 @@
+import { Ingredient } from '@/types/nutrition';
+
+// Reusable ingredient library keyed by food ID
+export const foodIngredients: Record<string, Ingredient[]> = {
+  'ind-1': [ // Butter Chicken
+    { id: 'bc-chicken', name: 'Chicken Breast', emoji: '🍗', calories: 220, protein: 26, carbs: 0, fats: 8, price: 0, isDefault: true, isRemovable: false },
+    { id: 'bc-butter', name: 'Butter Sauce', emoji: '🧈', calories: 120, protein: 1, carbs: 6, fats: 10, price: 0, isDefault: true, isRemovable: true },
+    { id: 'bc-cream', name: 'Fresh Cream', emoji: '🥛', calories: 60, protein: 1, carbs: 2, fats: 6, price: 0, isDefault: true, isRemovable: true },
+    { id: 'bc-naan', name: 'Whole Wheat Naan', emoji: '🫓', calories: 80, protein: 3, carbs: 14, fats: 2, price: 0, isDefault: true, isRemovable: true },
+    { id: 'bc-xnaan', name: 'Extra Naan', emoji: '🫓', calories: 80, protein: 3, carbs: 14, fats: 2, price: 30, isDefault: false, isRemovable: false },
+    { id: 'bc-rice', name: 'Steamed Rice', emoji: '🍚', calories: 130, protein: 3, carbs: 28, fats: 0.5, price: 40, isDefault: false, isRemovable: false },
+    { id: 'bc-raita', name: 'Cucumber Raita', emoji: '🥒', calories: 45, protein: 2, carbs: 4, fats: 2, price: 25, isDefault: false, isRemovable: false },
+  ],
+  'ind-4': [ // Chicken Biryani
+    { id: 'bi-chicken', name: 'Spiced Chicken', emoji: '🍗', calories: 240, protein: 24, carbs: 2, fats: 14, price: 0, isDefault: true, isRemovable: false },
+    { id: 'bi-rice', name: 'Basmati Rice', emoji: '🍚', calories: 200, protein: 4, carbs: 44, fats: 1, price: 0, isDefault: true, isRemovable: false },
+    { id: 'bi-saffron', name: 'Saffron & Spices', emoji: '🧡', calories: 15, protein: 0, carbs: 3, fats: 0.5, price: 0, isDefault: true, isRemovable: false },
+    { id: 'bi-raita', name: 'Raita', emoji: '🥒', calories: 45, protein: 2, carbs: 4, fats: 2, price: 0, isDefault: true, isRemovable: true },
+    { id: 'bi-egg', name: 'Boiled Egg', emoji: '🥚', calories: 70, protein: 6, carbs: 0.5, fats: 5, price: 20, isDefault: false, isRemovable: false },
+    { id: 'bi-mirchi', name: 'Green Chilli Salna', emoji: '🌶️', calories: 30, protein: 1, carbs: 5, fats: 1, price: 15, isDefault: false, isRemovable: false },
+  ],
+  'con-1': [ // Grilled Salmon
+    { id: 'gs-salmon', name: 'Atlantic Salmon', emoji: '🐟', calories: 230, protein: 30, carbs: 0, fats: 14, price: 0, isDefault: true, isRemovable: false },
+    { id: 'gs-asparagus', name: 'Grilled Asparagus', emoji: '🌿', calories: 40, protein: 3, carbs: 4, fats: 1, price: 0, isDefault: true, isRemovable: true },
+    { id: 'gs-lemonbutter', name: 'Lemon Butter', emoji: '🍋', calories: 80, protein: 0, carbs: 1, fats: 9, price: 0, isDefault: true, isRemovable: true },
+    { id: 'gs-quinoa', name: 'Quinoa Side', emoji: '🌾', calories: 120, protein: 4, carbs: 21, fats: 2, price: 40, isDefault: false, isRemovable: false },
+    { id: 'gs-avocado', name: 'Avocado Slices', emoji: '🥑', calories: 80, protein: 1, carbs: 4, fats: 7, price: 50, isDefault: false, isRemovable: false },
+    { id: 'gs-xsalmon', name: 'Extra Salmon 50g', emoji: '🐟', calories: 100, protein: 13, carbs: 0, fats: 6, price: 120, isDefault: false, isRemovable: false },
+  ],
+  'asi-3': [ // Salmon Poke Bowl
+    { id: 'pk-salmon', name: 'Raw Salmon', emoji: '🍣', calories: 150, protein: 20, carbs: 0, fats: 7, price: 0, isDefault: true, isRemovable: false },
+    { id: 'pk-rice', name: 'Sushi Rice', emoji: '🍚', calories: 150, protein: 3, carbs: 33, fats: 0.5, price: 0, isDefault: true, isRemovable: false },
+    { id: 'pk-avocado', name: 'Avocado', emoji: '🥑', calories: 60, protein: 1, carbs: 3, fats: 5, price: 0, isDefault: true, isRemovable: true },
+    { id: 'pk-edamame', name: 'Edamame', emoji: '🫛', calories: 50, protein: 5, carbs: 4, fats: 2, price: 0, isDefault: true, isRemovable: true },
+    { id: 'pk-mango', name: 'Fresh Mango', emoji: '🥭', calories: 40, protein: 0.5, carbs: 10, fats: 0, price: 30, isDefault: false, isRemovable: false },
+    { id: 'pk-tofu', name: 'Crispy Tofu', emoji: '🫘', calories: 90, protein: 8, carbs: 4, fats: 5, price: 40, isDefault: false, isRemovable: false },
+    { id: 'pk-spicymayo', name: 'Spicy Mayo Drizzle', emoji: '🌶️', calories: 70, protein: 0, carbs: 1, fats: 7, price: 20, isDefault: false, isRemovable: false },
+  ],
+  'sal-1': [ // Caesar Salad
+    { id: 'cs-romaine', name: 'Romaine Lettuce', emoji: '🥬', calories: 20, protein: 1, carbs: 3, fats: 0, price: 0, isDefault: true, isRemovable: false },
+    { id: 'cs-chicken', name: 'Grilled Chicken', emoji: '🍗', calories: 140, protein: 20, carbs: 0, fats: 6, price: 0, isDefault: true, isRemovable: true },
+    { id: 'cs-parmesan', name: 'Parmesan Cheese', emoji: '🧀', calories: 50, protein: 4, carbs: 0.5, fats: 3.5, price: 0, isDefault: true, isRemovable: true },
+    { id: 'cs-croutons', name: 'Croutons', emoji: '🍞', calories: 50, protein: 1, carbs: 8, fats: 2, price: 0, isDefault: true, isRemovable: true },
+    { id: 'cs-egg', name: 'Boiled Egg', emoji: '🥚', calories: 70, protein: 6, carbs: 0.5, fats: 5, price: 25, isDefault: false, isRemovable: false },
+    { id: 'cs-bacon', name: 'Turkey Bacon', emoji: '🥓', calories: 60, protein: 5, carbs: 1, fats: 4, price: 40, isDefault: false, isRemovable: false },
+  ],
+  'pro-1': [ // Chicken Quinoa Bowl
+    { id: 'cq-chicken', name: 'Grilled Chicken', emoji: '🍗', calories: 180, protein: 28, carbs: 0, fats: 6, price: 0, isDefault: true, isRemovable: false },
+    { id: 'cq-quinoa', name: 'Quinoa', emoji: '🌾', calories: 140, protein: 5, carbs: 24, fats: 2, price: 0, isDefault: true, isRemovable: false },
+    { id: 'cq-chickpeas', name: 'Chickpeas', emoji: '🫘', calories: 80, protein: 5, carbs: 13, fats: 1, price: 0, isDefault: true, isRemovable: true },
+    { id: 'cq-veggies', name: 'Roasted Veggies', emoji: '🥦', calories: 50, protein: 2, carbs: 8, fats: 1.5, price: 0, isDefault: true, isRemovable: true },
+    { id: 'cq-tahini', name: 'Tahini Dressing', emoji: '🥄', calories: 60, protein: 2, carbs: 3, fats: 5, price: 0, isDefault: true, isRemovable: true },
+    { id: 'cq-avocado', name: 'Avocado', emoji: '🥑', calories: 80, protein: 1, carbs: 4, fats: 7, price: 50, isDefault: false, isRemovable: false },
+    { id: 'cq-feta', name: 'Crumbled Feta', emoji: '🧀', calories: 50, protein: 3, carbs: 1, fats: 4, price: 35, isDefault: false, isRemovable: false },
+  ],
+  'smo-1': [ // Smoothie Bowl
+    { id: 'sb-spinach', name: 'Spinach Base', emoji: '🥬', calories: 30, protein: 3, carbs: 4, fats: 0, price: 0, isDefault: true, isRemovable: false },
+    { id: 'sb-banana', name: 'Banana', emoji: '🍌', calories: 90, protein: 1, carbs: 22, fats: 0.5, price: 0, isDefault: true, isRemovable: false },
+    { id: 'sb-granola', name: 'Granola', emoji: '🥣', calories: 80, protein: 2, carbs: 14, fats: 3, price: 0, isDefault: true, isRemovable: true },
+    { id: 'sb-berries', name: 'Mixed Berries', emoji: '🫐', calories: 40, protein: 1, carbs: 9, fats: 0, price: 0, isDefault: true, isRemovable: true },
+    { id: 'sb-chia', name: 'Chia Seeds', emoji: '🫧', calories: 30, protein: 2, carbs: 3, fats: 2, price: 15, isDefault: false, isRemovable: false },
+    { id: 'sb-peanutbutter', name: 'Peanut Butter', emoji: '🥜', calories: 95, protein: 4, carbs: 3, fats: 8, price: 25, isDefault: false, isRemovable: false },
+    { id: 'sb-protein', name: 'Whey Protein Scoop', emoji: '💪', calories: 120, protein: 25, carbs: 2, fats: 1, price: 40, isDefault: false, isRemovable: false },
+  ],
+};

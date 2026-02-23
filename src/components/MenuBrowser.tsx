@@ -1,9 +1,10 @@
 import { useState } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
-import { Search, AlertTriangle, ShoppingCart, Flame, Beef, Wheat, Droplets } from 'lucide-react';
+import { motion } from 'framer-motion';
+import { Search } from 'lucide-react';
 import { foodDatabase, foodCategories } from '@/data/foods';
 import { FoodItem, DietaryTag, DIETARY_FILTERS, CUISINE_CATEGORIES, CuisineCategory } from '@/types/nutrition';
 import MenuCard from './MenuCard';
+import FoodCustomizer from './FoodCustomizer';
 
 interface Props {
   onAddToCart: (food: FoodItem) => void;
@@ -27,8 +28,6 @@ export default function MenuBrowser({ onAddToCart, userAllergies, dietaryPrefere
     const matchSearch = f.name.toLowerCase().includes(search.toLowerCase()) || f.description.toLowerCase().includes(search.toLowerCase());
     const matchCat = !selectedCategory || f.category === selectedCategory;
     const matchDietary = activeDietaryFilters.length === 0 || activeDietaryFilters.every(tag => f.dietaryTags.includes(tag));
-    // Filter out allergen-containing items if user has allergies
-    const noAllergenConflict = userAllergies.length === 0 || !f.allergens.some(a => userAllergies.includes(a));
     return matchSearch && matchCat && matchDietary;
   });
 
@@ -37,17 +36,23 @@ export default function MenuBrowser({ onAddToCart, userAllergies, dietaryPrefere
 
   const popular = filtered.filter(f => f.isPopular);
 
+  const handleAddFromCustomizer = (food: FoodItem, quantity: number) => {
+    for (let i = 0; i < quantity; i++) {
+      onAddToCart(food);
+    }
+  };
+
   return (
-    <div className="space-y-4">
+    <div className="space-y-5">
       {/* Search */}
       <div className="relative">
-        <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground" />
+        <Search className="absolute left-4 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground" />
         <input
           type="text"
           placeholder="Search dishes, cuisines..."
           value={search}
           onChange={e => setSearch(e.target.value)}
-          className="w-full pl-10 pr-4 py-3 bg-muted rounded-xl text-sm font-body text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary/30 transition-all"
+          className="w-full pl-11 pr-4 py-3.5 bg-card rounded-2xl text-sm font-body text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary/20 border border-border/50 transition-all shadow-sm"
         />
       </div>
 
@@ -57,10 +62,10 @@ export default function MenuBrowser({ onAddToCart, userAllergies, dietaryPrefere
           <button
             key={df.id}
             onClick={() => toggleDietaryFilter(df.id)}
-            className={`px-3 py-1.5 rounded-full text-xs font-medium whitespace-nowrap transition-all flex items-center gap-1 ${
+            className={`px-3.5 py-2 rounded-xl text-xs font-semibold whitespace-nowrap transition-all flex items-center gap-1.5 ${
               activeDietaryFilters.includes(df.id)
-                ? 'bg-primary text-primary-foreground shadow-sm'
-                : 'bg-muted text-muted-foreground hover:bg-accent'
+                ? 'nutri-gradient text-primary-foreground shadow-md'
+                : 'bg-card text-muted-foreground border border-border/50 hover:border-primary/30'
             }`}
           >
             <span>{df.emoji}</span>
@@ -73,8 +78,10 @@ export default function MenuBrowser({ onAddToCart, userAllergies, dietaryPrefere
       <div className="flex gap-2 overflow-x-auto pb-1 scrollbar-hide">
         <button
           onClick={() => setSelectedCategory(null)}
-          className={`px-3 py-1.5 rounded-full text-xs font-medium whitespace-nowrap transition-colors ${
-            !selectedCategory ? 'bg-secondary text-secondary-foreground' : 'bg-muted text-muted-foreground hover:bg-accent'
+          className={`px-3.5 py-2 rounded-xl text-xs font-semibold whitespace-nowrap transition-all ${
+            !selectedCategory
+              ? 'bg-secondary text-secondary-foreground shadow-sm'
+              : 'bg-card text-muted-foreground border border-border/50 hover:border-primary/30'
           }`}
         >
           🍽️ All
@@ -83,8 +90,10 @@ export default function MenuBrowser({ onAddToCart, userAllergies, dietaryPrefere
           <button
             key={cat.id}
             onClick={() => setSelectedCategory(cat.id === selectedCategory ? null : cat.id)}
-            className={`px-3 py-1.5 rounded-full text-xs font-medium whitespace-nowrap transition-colors ${
-              selectedCategory === cat.id ? 'bg-secondary text-secondary-foreground' : 'bg-muted text-muted-foreground hover:bg-accent'
+            className={`px-3.5 py-2 rounded-xl text-xs font-semibold whitespace-nowrap transition-all ${
+              selectedCategory === cat.id
+                ? 'bg-secondary text-secondary-foreground shadow-sm'
+                : 'bg-card text-muted-foreground border border-border/50 hover:border-primary/30'
             }`}
           >
             {cat.emoji} {cat.id}
@@ -92,76 +101,10 @@ export default function MenuBrowser({ onAddToCart, userAllergies, dietaryPrefere
         ))}
       </div>
 
-      {/* Food Detail Modal */}
-      <AnimatePresence>
-        {selectedFood && (
-          <motion.div
-            initial={{ opacity: 0, scale: 0.95 }}
-            animate={{ opacity: 1, scale: 1 }}
-            exit={{ opacity: 0, scale: 0.95 }}
-            className="bg-card rounded-2xl border border-border nutri-shadow-card overflow-hidden"
-          >
-            {selectedFood.image && (
-              <div className="w-full h-48 overflow-hidden">
-                <img src={selectedFood.image} alt={selectedFood.name} className="w-full h-full object-cover" />
-              </div>
-            )}
-            <div className="p-5 space-y-4">
-              <div className="flex items-start justify-between">
-                <div>
-                  <h3 className="font-display font-bold text-foreground text-lg">{selectedFood.name}</h3>
-                  <p className="text-xs text-muted-foreground mt-0.5">{selectedFood.description}</p>
-                  <p className="text-sm font-bold text-primary mt-1">₹{selectedFood.pricePerServing}</p>
-                </div>
-                <button onClick={() => setSelectedFood(null)} className="text-muted-foreground hover:text-foreground text-xl leading-none">&times;</button>
-              </div>
-
-              {hasAllergyRisk(selectedFood) && (
-                <div className="flex items-center gap-2 bg-nutri-red-light text-nutri-red rounded-xl px-4 py-2.5 text-sm font-medium">
-                  <AlertTriangle className="w-4 h-4 shrink-0" />
-                  <span>Allergy alert: {selectedFood.allergens.filter(a => userAllergies.includes(a)).join(', ')}</span>
-                </div>
-              )}
-
-              {/* Dietary tags */}
-              <div className="flex flex-wrap gap-1.5">
-                {selectedFood.dietaryTags.map(tag => (
-                  <span key={tag} className="bg-accent text-accent-foreground text-[10px] px-2 py-0.5 rounded-full font-medium capitalize">
-                    {tag.replace('-', ' ')}
-                  </span>
-                ))}
-              </div>
-
-              {/* Nutrition grid */}
-              <div className="grid grid-cols-4 gap-2">
-                {[
-                  { label: 'Calories', value: `${selectedFood.calories}`, icon: <Flame className="w-3 h-3" />, color: 'bg-nutri-amber-light text-nutri-amber' },
-                  { label: 'Protein', value: `${selectedFood.protein}g`, icon: <Beef className="w-3 h-3" />, color: 'bg-nutri-red-light text-nutri-red' },
-                  { label: 'Carbs', value: `${selectedFood.carbs}g`, icon: <Wheat className="w-3 h-3" />, color: 'bg-nutri-blue-light text-nutri-blue' },
-                  { label: 'Fats', value: `${selectedFood.fats}g`, icon: <Droplets className="w-3 h-3" />, color: 'bg-nutri-purple-light text-nutri-purple' },
-                ].map(m => (
-                  <div key={m.label} className={`${m.color} rounded-xl p-2.5 text-center`}>
-                    <div className="flex items-center justify-center gap-1 mb-0.5">{m.icon}<span className="text-[10px] font-medium">{m.label}</span></div>
-                    <p className="text-sm font-bold">{m.value}</p>
-                  </div>
-                ))}
-              </div>
-
-              <button
-                onClick={() => { onAddToCart(selectedFood); setSelectedFood(null); }}
-                className="w-full nutri-gradient text-primary-foreground rounded-xl py-3 text-sm font-bold flex items-center justify-center gap-2 hover:opacity-90 transition-opacity"
-              >
-                <ShoppingCart className="w-4 h-4" /> Add to Cart — ₹{selectedFood.pricePerServing}
-              </button>
-            </div>
-          </motion.div>
-        )}
-      </AnimatePresence>
-
       {/* Popular Section */}
-      {!selectedFood && !search && !selectedCategory && popular.length > 0 && (
+      {!search && !selectedCategory && popular.length > 0 && (
         <div>
-          <h3 className="font-display font-bold text-foreground text-sm mb-2">🔥 Popular Dishes</h3>
+          <h3 className="font-display font-bold text-foreground text-sm mb-3">🔥 Popular Dishes</h3>
           <div className="flex gap-3 overflow-x-auto pb-2 scrollbar-hide">
             {popular.map(food => (
               <MenuCard key={food.id} food={food} hasAllergyRisk={hasAllergyRisk(food)} onSelect={() => setSelectedFood(food)} variant="horizontal" />
@@ -171,35 +114,45 @@ export default function MenuBrowser({ onAddToCart, userAllergies, dietaryPrefere
       )}
 
       {/* Menu Grid */}
-      {!selectedFood && (
-        <div className="space-y-6">
-          {selectedCategory ? (
-            <div className="grid grid-cols-2 gap-3">
-              {filtered.map((food, i) => (
-                <MenuCard key={food.id} food={food} hasAllergyRisk={hasAllergyRisk(food)} onSelect={() => setSelectedFood(food)} index={i} />
-              ))}
-            </div>
-          ) : (
-            foodCategories.filter(cat => filtered.some(f => f.category === cat)).map(cat => (
-              <div key={cat}>
-                <h3 className="font-display font-bold text-foreground text-sm mb-2">
-                  {CUISINE_CATEGORIES.find(c => c.id === cat)?.emoji} {cat}
-                </h3>
-                <div className="grid grid-cols-2 gap-3">
-                  {filtered.filter(f => f.category === cat).map((food, i) => (
-                    <MenuCard key={food.id} food={food} hasAllergyRisk={hasAllergyRisk(food)} onSelect={() => setSelectedFood(food)} index={i} />
-                  ))}
-                </div>
+      <div className="space-y-6">
+        {selectedCategory ? (
+          <div className="grid grid-cols-2 gap-3">
+            {filtered.map((food, i) => (
+              <MenuCard key={food.id} food={food} hasAllergyRisk={hasAllergyRisk(food)} onSelect={() => setSelectedFood(food)} index={i} />
+            ))}
+          </div>
+        ) : (
+          foodCategories.filter(cat => filtered.some(f => f.category === cat)).map(cat => (
+            <div key={cat}>
+              <h3 className="font-display font-bold text-foreground text-sm mb-3">
+                {CUISINE_CATEGORIES.find(c => c.id === cat)?.emoji} {cat}
+              </h3>
+              <div className="grid grid-cols-2 gap-3">
+                {filtered.filter(f => f.category === cat).map((food, i) => (
+                  <MenuCard key={food.id} food={food} hasAllergyRisk={hasAllergyRisk(food)} onSelect={() => setSelectedFood(food)} index={i} />
+                ))}
               </div>
-            ))
-          )}
-          {filtered.length === 0 && (
-            <div className="text-center py-10">
-              <p className="text-3xl mb-2">😢</p>
-              <p className="text-muted-foreground text-sm">No dishes match your filters</p>
             </div>
-          )}
-        </div>
+          ))
+        )}
+        {filtered.length === 0 && (
+          <div className="text-center py-10">
+            <p className="text-3xl mb-2">😢</p>
+            <p className="text-muted-foreground text-sm">No dishes match your filters</p>
+          </div>
+        )}
+      </div>
+
+      {/* Customizer Sheet */}
+      {selectedFood && (
+        <FoodCustomizer
+          food={selectedFood}
+          open={!!selectedFood}
+          onClose={() => setSelectedFood(null)}
+          onAddToCart={handleAddFromCustomizer}
+          hasAllergyRisk={hasAllergyRisk(selectedFood)}
+          userAllergies={userAllergies}
+        />
       )}
     </div>
   );
