@@ -19,18 +19,21 @@ const Index = () => {
   } = useNutrition();
 
   return (
-    <div className="min-h-screen bg-background pb-20">
+    <div className="min-h-screen bg-background pb-24">
       {/* Header */}
-      <header className="sticky top-0 z-40 bg-background/80 backdrop-blur-lg border-b border-border/50">
-        <div className="max-w-lg mx-auto px-4 py-3 flex items-center gap-2">
-          <div className="w-8 h-8 rounded-xl nutri-gradient flex items-center justify-center">
-            <Leaf className="w-4 h-4 text-primary-foreground" />
+      <header className="sticky top-0 z-40 bg-card/70 backdrop-blur-xl border-b border-border/30">
+        <div className="max-w-lg mx-auto px-4 py-3 flex items-center gap-3">
+          <div className="w-9 h-9 rounded-2xl nutri-gradient flex items-center justify-center shadow-md">
+            <Leaf className="w-4.5 h-4.5 text-primary-foreground" />
           </div>
-          <h1 className="font-display font-bold text-lg text-foreground">NutriFact</h1>
-          <div className="ml-auto flex items-center gap-1.5 bg-muted rounded-full px-3 py-1">
+          <div>
+            <h1 className="font-display font-bold text-base text-foreground leading-tight">NutriFact</h1>
+            <p className="text-[10px] text-muted-foreground font-medium">Smart Healthy Ordering</p>
+          </div>
+          <div className="ml-auto flex items-center gap-1.5 glass-card rounded-full px-3.5 py-1.5">
             <Flame className="w-3 h-3 text-nutri-amber" />
             <span className="text-xs font-bold text-foreground">{Math.round(cartTotals.calories)} kcal</span>
-            <span className="text-xs text-muted-foreground">|</span>
+            <span className="text-[10px] text-muted-foreground">|</span>
             <span className="text-xs font-bold text-primary">₹{cartTotals.cost.toFixed(0)}</span>
           </div>
         </div>

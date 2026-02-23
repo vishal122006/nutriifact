@@ -1,4 +1,5 @@
 import { FoodItem, CuisineCategory } from '@/types/nutrition';
+import { foodIngredients } from './ingredients';
 
 // Image imports
 import butterChickenImg from '@/assets/food/butter-chicken.jpg';
@@ -12,7 +13,12 @@ import almondCroissantImg from '@/assets/food/almond-croissant.jpg';
 import padThaiImg from '@/assets/food/pad-thai.jpg';
 import grilledSalmonImg from '@/assets/food/grilled-salmon.jpg';
 
-export const foodDatabase: FoodItem[] = [
+// Attach ingredients to food items
+function withIngredients(food: FoodItem): FoodItem {
+  return { ...food, ingredients: foodIngredients[food.id] || [] };
+}
+
+export const foodDatabase: FoodItem[] = ([
   // === INDIAN CUISINE ===
   {
     id: 'ind-1', name: 'Butter Chicken', emoji: '🍗', category: 'Indian Cuisine',
@@ -226,7 +232,7 @@ export const foodDatabase: FoodItem[] = [
     dietaryTags: ['vegetarian'], pricePerServing: 80, servingSize: '1 cookie', servingGrams: 40,
     description: 'Chewy oat cookie with dark chocolate chips & raisins',
   },
-];
+] as FoodItem[]).map(withIngredients);
 
 export const foodCategories: CuisineCategory[] = [
   'Indian Cuisine', 'Continental', 'Asian', 'Salads', 'Protein Bowls',

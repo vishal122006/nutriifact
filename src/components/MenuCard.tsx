@@ -58,22 +58,28 @@ export default function MenuCard({ food, hasAllergyRisk, onSelect, variant = 've
       animate={{ opacity: 1, y: 0 }}
       transition={{ delay: index * 0.04 }}
       onClick={onSelect}
-      className="bg-card rounded-2xl border border-border/50 nutri-shadow-card overflow-hidden text-left hover:border-primary/30 transition-all group"
+      className="bg-card rounded-2xl border border-border/50 nutri-shadow-card overflow-hidden text-left hover:border-primary/30 hover:nutri-shadow-elevated transition-all group"
     >
-      <div className="h-32 overflow-hidden relative">
+      <div className="h-36 overflow-hidden relative">
         {food.image ? (
-          <img src={food.image} alt={food.name} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" />
+          <img src={food.image} alt={food.name} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
         ) : (
           <div className="w-full h-full bg-muted flex items-center justify-center text-4xl">{food.emoji}</div>
         )}
+        <div className="absolute inset-0 bg-gradient-to-t from-foreground/20 to-transparent" />
         {hasAllergyRisk && (
           <span className="absolute top-2 right-2 bg-nutri-red text-primary-foreground p-1 rounded-full">
             <AlertTriangle className="w-3 h-3" />
           </span>
         )}
         {topBadge && (
-          <span className={`absolute top-2 left-2 text-[9px] font-bold px-1.5 py-0.5 rounded-full ${BADGE_MAP[topBadge].className}`}>
+          <span className={`absolute top-2 left-2 text-[9px] font-bold px-2 py-0.5 rounded-full backdrop-blur-sm ${BADGE_MAP[topBadge].className}`}>
             {BADGE_MAP[topBadge].label}
+          </span>
+        )}
+        {food.ingredients && food.ingredients.length > 0 && (
+          <span className="absolute bottom-2 right-2 text-[9px] font-semibold px-2 py-0.5 rounded-full bg-card/80 backdrop-blur-sm text-foreground">
+            ✨ Customizable
           </span>
         )}
       </div>

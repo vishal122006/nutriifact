@@ -48,18 +48,19 @@
     /* NutriFact custom tokens */
     --nutri-green: 152 55% 38%;
     --nutri-green-light: 152 45% 92%;
-    --nutri-amber: 45 90% 55%;
-    --nutri-amber-light: 45 80% 92%;
+    --nutri-amber: 42 92% 56%;
+    --nutri-amber-light: 42 80% 93%;
     --nutri-red: 0 72% 55%;
-    --nutri-red-light: 0 60% 93%;
+    --nutri-red-light: 0 60% 94%;
     --nutri-blue: 210 70% 50%;
-    --nutri-blue-light: 210 60% 92%;
+    --nutri-blue-light: 210 60% 93%;
     --nutri-purple: 280 55% 55%;
-    --nutri-purple-light: 280 45% 93%;
-    --nutri-gradient-primary: linear-gradient(135deg, hsl(152, 55%, 38%), hsl(160, 50%, 45%));
-    --nutri-gradient-warm: linear-gradient(135deg, hsl(45, 90%, 55%), hsl(30, 85%, 55%));
-    --nutri-shadow-soft: 0 4px 20px -4px hsl(152 55% 38% / 0.15);
-    --nutri-shadow-card: 0 2px 12px -2px hsl(150 30% 10% / 0.08);
+    --nutri-purple-light: 280 45% 94%;
+    --nutri-gradient-primary: linear-gradient(135deg, hsl(152, 55%, 38%) 0%, hsl(162, 50%, 42%) 50%, hsl(152, 48%, 35%) 100%);
+    --nutri-gradient-warm: linear-gradient(135deg, hsl(42, 92%, 56%) 0%, hsl(30, 85%, 55%) 100%);
+    --nutri-shadow-soft: 0 8px 32px -8px hsl(152 55% 38% / 0.18);
+    --nutri-shadow-card: 0 1px 3px 0 hsl(150 30% 10% / 0.04), 0 4px 16px -4px hsl(150 30% 10% / 0.06);
+    --nutri-shadow-elevated: 0 4px 24px -6px hsl(150 30% 10% / 0.12), 0 12px 48px -12px hsl(152 55% 38% / 0.08);
   }
 
   .dark {
@@ -124,7 +125,20 @@
     box-shadow: var(--nutri-shadow-card);
   }
 
+  .nutri-shadow-elevated {
+    box-shadow: var(--nutri-shadow-elevated);
+  }
+
   .glass-card {
     @apply bg-card/80 backdrop-blur-md border border-border/50;
+    box-shadow: var(--nutri-shadow-card);
+  }
+
+  .scrollbar-hide::-webkit-scrollbar {
+    display: none;
+  }
+  .scrollbar-hide {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
   }
 }
