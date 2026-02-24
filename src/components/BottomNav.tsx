@@ -18,7 +18,7 @@ const tabs: { id: Tab; label: string; icon: React.ReactNode }[] = [
 
 export default function BottomNav({ active, onChange, cartCount }: Props) {
   return (
-    <nav className="fixed bottom-0 left-0 right-0 bg-card/80 backdrop-blur-xl border-t border-border/30 z-50">
+    <nav className="fixed bottom-0 left-0 right-0 bg-card/85 backdrop-blur-2xl border-t border-secondary/8 z-50">
       <div className="max-w-lg mx-auto flex items-center justify-around py-2.5 px-4">
         {tabs.map(t => (
           <button
@@ -26,14 +26,14 @@ export default function BottomNav({ active, onChange, cartCount }: Props) {
             onClick={() => onChange(t.id)}
             className={`relative flex flex-col items-center gap-0.5 py-1 px-3 rounded-2xl transition-all ${
               active === t.id
-                ? 'text-primary bg-primary/8'
+                ? 'text-secondary bg-secondary/8'
                 : 'text-muted-foreground hover:text-foreground'
             }`}
           >
             {t.icon}
             <span className="text-[10px] font-semibold">{t.label}</span>
             {t.id === 'cart' && cartCount > 0 && (
-              <span className="absolute -top-0.5 right-1 nutri-gradient text-primary-foreground text-[9px] font-bold w-4.5 h-4.5 rounded-full flex items-center justify-center shadow-sm">
+              <span className="absolute -top-0.5 right-1 nutri-gradient-gold text-secondary-foreground text-[9px] font-bold w-4.5 h-4.5 rounded-full flex items-center justify-center shadow-sm">
                 {cartCount > 9 ? '9+' : cartCount}
               </span>
             )}

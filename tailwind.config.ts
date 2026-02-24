@@ -64,6 +64,8 @@ export default {
         nutri: {
           green: "hsl(var(--nutri-green))",
           "green-light": "hsl(var(--nutri-green-light))",
+          gold: "hsl(var(--nutri-gold))",
+          "gold-light": "hsl(var(--nutri-gold-light))",
           amber: "hsl(var(--nutri-amber))",
           "amber-light": "hsl(var(--nutri-amber-light))",
           red: "hsl(var(--nutri-red))",

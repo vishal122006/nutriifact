@@ -42,8 +42,8 @@ export default function AISuggestions({ profile, totals }: Props) {
   return (
     <div className="space-y-3">
       <div className="flex items-center gap-2 mb-1">
-        <div className="w-8 h-8 rounded-xl nutri-gradient flex items-center justify-center">
-          <Lightbulb className="w-4 h-4 text-primary-foreground" />
+        <div className="w-8 h-8 rounded-xl nutri-gradient-gold flex items-center justify-center nutri-shadow">
+          <Lightbulb className="w-4 h-4 text-secondary-foreground" />
         </div>
         <div>
           <h3 className="font-display font-bold text-foreground text-sm">AI Suggestions</h3>
@@ -55,7 +55,7 @@ export default function AISuggestions({ profile, totals }: Props) {
         <motion.div
           initial={{ opacity: 0, y: 8 }}
           animate={{ opacity: 1, y: 0 }}
-          className="bg-nutri-amber-light rounded-xl p-4 border border-secondary/20"
+          className="bg-nutri-gold-light rounded-2xl p-4 border border-secondary/15"
         >
           <p className="text-sm text-secondary-foreground font-medium">
             {caloriesLeft > 0
@@ -71,9 +71,9 @@ export default function AISuggestions({ profile, totals }: Props) {
           initial={{ opacity: 0, x: -8 }}
           animate={{ opacity: 1, x: 0 }}
           transition={{ delay: i * 0.1 }}
-          className="flex items-start gap-3 bg-card rounded-xl p-3 border border-border/50"
+          className="flex items-start gap-3 bg-card rounded-2xl p-3 border border-border/40 nutri-shadow-card"
         >
-          <span className="text-primary mt-0.5 text-sm">✦</span>
+          <span className="text-secondary mt-0.5 text-sm">✦</span>
           <p className="text-sm text-foreground/80">{tip}</p>
         </motion.div>
       ))}
