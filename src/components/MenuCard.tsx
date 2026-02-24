@@ -27,7 +27,7 @@ export default function MenuCard({ food, hasAllergyRisk, onSelect, variant = 've
         initial={{ opacity: 0, x: 20 }}
         animate={{ opacity: 1, x: 0 }}
         onClick={onSelect}
-        className="shrink-0 w-44 bg-card rounded-2xl border border-border/50 nutri-shadow-card overflow-hidden text-left hover:border-primary/30 transition-colors"
+        className="shrink-0 w-44 bg-card rounded-2xl border border-border/40 nutri-shadow-card overflow-hidden text-left hover:border-secondary/25 transition-all"
       >
         <div className="h-28 overflow-hidden relative">
           {food.image ? (
@@ -44,7 +44,7 @@ export default function MenuCard({ food, hasAllergyRisk, onSelect, variant = 've
         <div className="p-2.5">
           <p className="text-xs font-bold text-foreground truncate">{food.name}</p>
           <div className="flex items-center justify-between mt-1">
-            <span className="text-xs font-bold text-primary">₹{food.pricePerServing}</span>
+            <span className="text-xs font-bold text-secondary">₹{food.pricePerServing}</span>
             <span className="text-[10px] text-muted-foreground">{food.calories} cal</span>
           </div>
         </div>
@@ -58,7 +58,7 @@ export default function MenuCard({ food, hasAllergyRisk, onSelect, variant = 've
       animate={{ opacity: 1, y: 0 }}
       transition={{ delay: index * 0.04 }}
       onClick={onSelect}
-      className="bg-card rounded-2xl border border-border/50 nutri-shadow-card overflow-hidden text-left hover:border-primary/30 hover:nutri-shadow-elevated transition-all group"
+      className="bg-card rounded-2xl border border-border/40 nutri-shadow-card overflow-hidden text-left hover:border-secondary/25 hover:nutri-shadow-elevated transition-all group"
     >
       <div className="h-36 overflow-hidden relative">
         {food.image ? (
@@ -66,9 +66,9 @@ export default function MenuCard({ food, hasAllergyRisk, onSelect, variant = 've
         ) : (
           <div className="w-full h-full bg-muted flex items-center justify-center text-4xl">{food.emoji}</div>
         )}
-        <div className="absolute inset-0 bg-gradient-to-t from-foreground/20 to-transparent" />
+        <div className="absolute inset-0 bg-gradient-to-t from-foreground/25 to-transparent" />
         {hasAllergyRisk && (
-          <span className="absolute top-2 right-2 bg-nutri-red text-primary-foreground p-1 rounded-full">
+          <span className="absolute top-2 right-2 bg-destructive text-primary-foreground p-1 rounded-full">
             <AlertTriangle className="w-3 h-3" />
           </span>
         )}
@@ -78,7 +78,7 @@ export default function MenuCard({ food, hasAllergyRisk, onSelect, variant = 've
           </span>
         )}
         {food.ingredients && food.ingredients.length > 0 && (
-          <span className="absolute bottom-2 right-2 text-[9px] font-semibold px-2 py-0.5 rounded-full bg-card/80 backdrop-blur-sm text-foreground">
+          <span className="absolute bottom-2 right-2 text-[9px] font-semibold px-2 py-0.5 rounded-full bg-card/80 backdrop-blur-sm text-secondary border border-secondary/15">
             ✨ Customizable
           </span>
         )}
@@ -87,7 +87,7 @@ export default function MenuCard({ food, hasAllergyRisk, onSelect, variant = 've
         <p className="text-xs font-bold text-foreground truncate">{food.name}</p>
         <p className="text-[10px] text-muted-foreground mt-0.5 line-clamp-1">{food.description}</p>
         <div className="flex items-center justify-between mt-2">
-          <span className="text-sm font-bold text-primary">₹{food.pricePerServing}</span>
+          <span className="text-sm font-bold text-secondary">₹{food.pricePerServing}</span>
           <span className="text-[10px] text-muted-foreground font-medium">{food.calories} cal · {food.protein}g P</span>
         </div>
       </div>

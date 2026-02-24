@@ -29,7 +29,7 @@ export default function GoalSelector({ profile, onUpdateGoal, onUpdateAllergies,
       {/* Fitness Goal */}
       <div>
         <div className="flex items-center gap-2 mb-3">
-          <Target className="w-4 h-4 text-primary" />
+          <Target className="w-4 h-4 text-secondary" />
           <h3 className="font-display font-bold text-foreground text-sm">Fitness Goal</h3>
         </div>
         <div className="grid grid-cols-2 gap-2">
@@ -38,10 +38,10 @@ export default function GoalSelector({ profile, onUpdateGoal, onUpdateAllergies,
               key={g.id}
               whileTap={{ scale: 0.97 }}
               onClick={() => onUpdateGoal(g.id)}
-              className={`rounded-xl p-3 text-left transition-all border ${
+              className={`rounded-2xl p-3 text-left transition-all border ${
                 profile.goal === g.id
-                  ? 'border-primary bg-accent nutri-shadow'
-                  : 'border-border bg-card hover:border-primary/30'
+                  ? 'border-secondary/30 bg-accent nutri-shadow'
+                  : 'border-border/40 bg-card hover:border-secondary/15'
               }`}
             >
               <span className="text-xl">{g.icon}</span>
@@ -55,7 +55,7 @@ export default function GoalSelector({ profile, onUpdateGoal, onUpdateAllergies,
       {/* Dietary Preferences */}
       <div>
         <div className="flex items-center gap-2 mb-3">
-          <Shield className="w-4 h-4 text-primary" />
+          <Shield className="w-4 h-4 text-secondary" />
           <h3 className="font-display font-bold text-foreground text-sm">Dietary Preferences</h3>
         </div>
         <div className="flex flex-wrap gap-2">
@@ -65,7 +65,7 @@ export default function GoalSelector({ profile, onUpdateGoal, onUpdateAllergies,
               onClick={() => toggleDietary(df.id)}
               className={`px-3 py-1.5 rounded-full text-xs font-medium transition-colors flex items-center gap-1 ${
                 profile.dietaryPreferences.includes(df.id)
-                  ? 'bg-primary text-primary-foreground'
+                  ? 'nutri-gradient text-primary-foreground nutri-shadow'
                   : 'bg-muted text-muted-foreground hover:bg-accent'
               }`}
             >
@@ -88,7 +88,7 @@ export default function GoalSelector({ profile, onUpdateGoal, onUpdateAllergies,
               onClick={() => toggleAllergy(a)}
               className={`px-3 py-1.5 rounded-full text-xs font-medium transition-colors ${
                 profile.allergies.includes(a)
-                  ? 'bg-nutri-red text-primary-foreground'
+                  ? 'bg-destructive text-primary-foreground'
                   : 'bg-muted text-muted-foreground hover:bg-accent'
               }`}
             >

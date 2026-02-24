@@ -15,19 +15,19 @@ export default function DailySummary({ totals, goals }: Props) {
     <motion.div
       initial={{ opacity: 0, y: 12 }}
       animate={{ opacity: 1, y: 0 }}
-      className="nutri-gradient rounded-2xl p-6 text-primary-foreground nutri-shadow"
+      className="nutri-gradient rounded-2xl p-6 text-primary-foreground nutri-shadow-gold"
     >
       <div className="flex items-center justify-between mb-4">
         <div>
           <p className="text-primary-foreground/70 text-sm font-body">Today's Calories</p>
           <div className="flex items-baseline gap-1">
             <span className="text-4xl font-display font-bold">{Math.round(totals.calories)}</span>
-            <span className="text-primary-foreground/60 text-sm">/ {goals.calories}</span>
+            <span className="text-primary-foreground/50 text-sm">/ {goals.calories}</span>
           </div>
         </div>
-        <div className="w-16 h-16 rounded-full border-4 border-primary-foreground/30 flex items-center justify-center relative">
+        <div className="w-16 h-16 rounded-full border-4 border-primary-foreground/20 flex items-center justify-center relative">
           <svg className="absolute inset-0 w-full h-full -rotate-90" viewBox="0 0 64 64">
-            <circle cx="32" cy="32" r="28" fill="none" stroke="currentColor" strokeWidth="4" className="text-primary-foreground/20" />
+            <circle cx="32" cy="32" r="28" fill="none" stroke="currentColor" strokeWidth="4" className="text-primary-foreground/15" />
             <circle
               cx="32" cy="32" r="28" fill="none" stroke="currentColor" strokeWidth="4"
               className="text-primary-foreground"
@@ -61,7 +61,7 @@ function MacroChip({ icon, label, value, goal, unit }: { icon: React.ReactNode; 
         <span className="text-xs font-medium">{label}</span>
       </div>
       <p className="text-sm font-bold">{Math.round(value)}{unit}</p>
-      <div className="w-full h-1.5 bg-primary-foreground/20 rounded-full mt-1.5">
+      <div className="w-full h-1.5 bg-primary-foreground/15 rounded-full mt-1.5">
         <div className="h-full bg-primary-foreground rounded-full transition-all duration-500" style={{ width: `${pct}%` }} />
       </div>
     </div>

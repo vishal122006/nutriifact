@@ -52,7 +52,7 @@ export default function MenuBrowser({ onAddToCart, userAllergies, dietaryPrefere
           placeholder="Search dishes, cuisines..."
           value={search}
           onChange={e => setSearch(e.target.value)}
-          className="w-full pl-11 pr-4 py-3.5 bg-card rounded-2xl text-sm font-body text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary/20 border border-border/50 transition-all shadow-sm"
+          className="w-full pl-11 pr-4 py-3.5 bg-card rounded-2xl text-sm font-body text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-secondary/25 border border-border/40 transition-all nutri-shadow-card"
         />
       </div>
 
@@ -64,8 +64,8 @@ export default function MenuBrowser({ onAddToCart, userAllergies, dietaryPrefere
             onClick={() => toggleDietaryFilter(df.id)}
             className={`px-3.5 py-2 rounded-xl text-xs font-semibold whitespace-nowrap transition-all flex items-center gap-1.5 ${
               activeDietaryFilters.includes(df.id)
-                ? 'nutri-gradient text-primary-foreground shadow-md'
-                : 'bg-card text-muted-foreground border border-border/50 hover:border-primary/30'
+                ? 'nutri-gradient text-primary-foreground nutri-shadow-gold'
+                : 'bg-card text-muted-foreground border border-border/40 hover:border-secondary/20'
             }`}
           >
             <span>{df.emoji}</span>
@@ -80,8 +80,8 @@ export default function MenuBrowser({ onAddToCart, userAllergies, dietaryPrefere
           onClick={() => setSelectedCategory(null)}
           className={`px-3.5 py-2 rounded-xl text-xs font-semibold whitespace-nowrap transition-all ${
             !selectedCategory
-              ? 'bg-secondary text-secondary-foreground shadow-sm'
-              : 'bg-card text-muted-foreground border border-border/50 hover:border-primary/30'
+              ? 'nutri-gradient-gold text-secondary-foreground nutri-shadow'
+              : 'bg-card text-muted-foreground border border-border/40 hover:border-secondary/20'
           }`}
         >
           🍽️ All
@@ -92,8 +92,8 @@ export default function MenuBrowser({ onAddToCart, userAllergies, dietaryPrefere
             onClick={() => setSelectedCategory(cat.id === selectedCategory ? null : cat.id)}
             className={`px-3.5 py-2 rounded-xl text-xs font-semibold whitespace-nowrap transition-all ${
               selectedCategory === cat.id
-                ? 'bg-secondary text-secondary-foreground shadow-sm'
-                : 'bg-card text-muted-foreground border border-border/50 hover:border-primary/30'
+                ? 'nutri-gradient-gold text-secondary-foreground nutri-shadow'
+                : 'bg-card text-muted-foreground border border-border/40 hover:border-secondary/20'
             }`}
           >
             {cat.emoji} {cat.id}
