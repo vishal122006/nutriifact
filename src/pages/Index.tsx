@@ -8,10 +8,12 @@ import GoalSelector from '@/components/GoalSelector';
 import AISuggestions from '@/components/AISuggestions';
 import BottomNav, { Tab } from '@/components/BottomNav';
 import { useNutrition } from '@/hooks/useNutrition';
+import { useAuth } from '@/hooks/useAuth';
 import { foodDatabase } from '@/data/foods';
 
 const Index = () => {
   const [activeTab, setActiveTab] = useState<Tab>('home');
+  const { isLoggedIn, login } = useAuth();
   const {
     cart, cartTotals, profile,
     addToCart, removeFromCart, updateCartQuantity, clearCart,
@@ -89,6 +91,8 @@ const Index = () => {
                 onUpdateQuantity={updateCartQuantity}
                 onRemove={removeFromCart}
                 onClear={clearCart}
+                isLoggedIn={isLoggedIn}
+                onLogin={login}
               />
             </motion.div>
           )}
