@@ -101,6 +101,29 @@
     --nutri-shadow-gold: 0 4px 20px -4px hsl(200 80% 52% / 0.3);
   }
 
+  /* Royal Blue dark mode */
+  [data-theme="royal-blue"].dark {
+    --primary: 225 55% 55%;
+    --primary-foreground: 0 0% 100%;
+
+    --secondary: 200 70% 55%;
+    --secondary-foreground: 200 90% 92%;
+
+    --accent: 220 30% 20%;
+    --accent-foreground: 210 40% 78%;
+
+    --ring: 225 55% 55%;
+
+    --nutri-gradient-primary: linear-gradient(135deg, hsl(225, 55%, 55%) 0%, hsl(200, 70%, 55%) 100%);
+    --nutri-gradient-gold: linear-gradient(135deg, hsl(200, 70%, 55%) 0%, hsl(210, 65%, 48%) 100%);
+    --nutri-gradient-dark: linear-gradient(135deg, hsl(220, 30%, 8%) 0%, hsl(225, 35%, 18%) 100%);
+    --nutri-gradient-warm: linear-gradient(135deg, hsl(200, 70%, 55%) 0%, hsl(210, 65%, 48%) 100%);
+
+    --nutri-shadow-soft: 0 8px 32px -8px hsl(225 55% 55% / 0.2);
+    --nutri-shadow-elevated: 0 4px 24px -6px hsl(225 55% 55% / 0.15), 0 12px 48px -12px hsl(200 70% 55% / 0.1);
+    --nutri-shadow-gold: 0 4px 20px -4px hsl(200 70% 55% / 0.35);
+  }
+
   .dark {
     --background: 25 18% 7%;
     --foreground: 30 12% 90%;
@@ -129,6 +152,11 @@
     --border: 25 14% 18%;
     --input: 25 14% 18%;
     --ring: 160 40% 40%;
+
+    --nutri-shadow-soft: 0 8px 32px -8px hsl(38 55% 48% / 0.08);
+    --nutri-shadow-card: 0 1px 3px 0 hsl(0 0% 0% / 0.15), 0 4px 16px -4px hsl(0 0% 0% / 0.2);
+    --nutri-shadow-elevated: 0 4px 24px -6px hsl(0 0% 0% / 0.25), 0 12px 48px -12px hsl(38 55% 48% / 0.05);
+    --nutri-shadow-gold: 0 4px 20px -4px hsl(38 55% 48% / 0.2);
   }
 }
 

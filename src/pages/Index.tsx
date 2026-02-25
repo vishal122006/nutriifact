@@ -16,7 +16,7 @@ import { foodDatabase } from '@/data/foods';
 const Index = () => {
   const [activeTab, setActiveTab] = useState<Tab>('home');
   const { isLoggedIn, login } = useAuth();
-  const { theme, toggleTheme } = useTheme();
+  const { theme, colorMode, toggleTheme, toggleColorMode } = useTheme();
   const {
     cart, cartTotals, profile,
     addToCart, removeFromCart, updateCartQuantity, clearCart,
@@ -39,7 +39,7 @@ const Index = () => {
             <p className="text-[10px] text-muted-foreground font-medium">Premium Healthy Ordering</p>
           </div>
           <div className="ml-auto flex items-center gap-2">
-            <ThemeToggle theme={theme} onToggle={toggleTheme} />
+            <ThemeToggle theme={theme} colorMode={colorMode} onToggleTheme={toggleTheme} onToggleColorMode={toggleColorMode} />
             <div className="flex items-center gap-1.5 glass-card-premium rounded-full px-3.5 py-1.5">
               <Flame className="w-3 h-3 text-secondary" />
               <span className="text-xs font-bold text-foreground">{Math.round(cartTotals.calories)} kcal</span>
