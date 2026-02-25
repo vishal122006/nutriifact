@@ -68,6 +68,37 @@
     --nutri-shadow-card: 0 1px 3px 0 hsl(25 20% 12% / 0.03), 0 4px 16px -4px hsl(25 20% 12% / 0.05);
     --nutri-shadow-elevated: 0 4px 24px -6px hsl(25 20% 12% / 0.1), 0 12px 48px -12px hsl(38 65% 52% / 0.06);
     --nutri-shadow-gold: 0 4px 20px -4px hsl(38 65% 52% / 0.25);
+
+    /* Royal Blue theme tokens (available as custom props) */
+    --royal-blue-primary: 225 65% 48%;
+    --royal-blue-secondary: 200 80% 52%;
+    --royal-blue-accent: 210 55% 92%;
+  }
+
+  /* Royal Blue theme override */
+  [data-theme="royal-blue"] {
+    --primary: 225 65% 48%;
+    --primary-foreground: 220 40% 97%;
+
+    --secondary: 200 80% 52%;
+    --secondary-foreground: 210 50% 8%;
+
+    --accent: 210 55% 92%;
+    --accent-foreground: 220 45% 30%;
+
+    --ring: 225 65% 48%;
+
+    --sidebar-primary: 225 65% 48%;
+    --sidebar-ring: 225 65% 48%;
+
+    --nutri-gradient-primary: linear-gradient(135deg, hsl(225, 65%, 48%) 0%, hsl(200, 80%, 52%) 100%);
+    --nutri-gradient-gold: linear-gradient(135deg, hsl(200, 80%, 52%) 0%, hsl(210, 75%, 45%) 100%);
+    --nutri-gradient-dark: linear-gradient(135deg, hsl(220, 30%, 12%) 0%, hsl(225, 40%, 22%) 100%);
+    --nutri-gradient-warm: linear-gradient(135deg, hsl(200, 80%, 52%) 0%, hsl(210, 75%, 45%) 100%);
+
+    --nutri-shadow-soft: 0 8px 32px -8px hsl(225 65% 48% / 0.15);
+    --nutri-shadow-elevated: 0 4px 24px -6px hsl(225 65% 48% / 0.12), 0 12px 48px -12px hsl(200 80% 52% / 0.08);
+    --nutri-shadow-gold: 0 4px 20px -4px hsl(200 80% 52% / 0.3);
   }
 
   .dark {
@@ -104,6 +135,19 @@
 @layer base {
   * {
     @apply border-border;
+  }
+
+  *,
+  *::before,
+  *::after {
+    transition-property: background-color, border-color, box-shadow, color, fill, stroke;
+    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+    transition-duration: 300ms;
+  }
+
+  /* Exclude elements that need instant transitions */
+  input, textarea, button, a, [class*="animate-"], [class*="motion"] {
+    transition-duration: 0ms;
   }
 
   body {

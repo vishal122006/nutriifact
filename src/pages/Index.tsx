@@ -6,14 +6,17 @@ import MenuBrowser from '@/components/MenuBrowser';
 import Cart from '@/components/Cart';
 import GoalSelector from '@/components/GoalSelector';
 import FloatingAIChat from '@/components/FloatingAIChat';
+import ThemeToggle from '@/components/ThemeToggle';
 import BottomNav, { Tab } from '@/components/BottomNav';
 import { useNutrition } from '@/hooks/useNutrition';
 import { useAuth } from '@/hooks/useAuth';
+import { useTheme } from '@/hooks/useTheme';
 import { foodDatabase } from '@/data/foods';
 
 const Index = () => {
   const [activeTab, setActiveTab] = useState<Tab>('home');
   const { isLoggedIn, login } = useAuth();
+  const { theme, toggleTheme } = useTheme();
   const {
     cart, cartTotals, profile,
     addToCart, removeFromCart, updateCartQuantity, clearCart,
@@ -35,11 +38,14 @@ const Index = () => {
             </div>
             <p className="text-[10px] text-muted-foreground font-medium">Premium Healthy Ordering</p>
           </div>
-          <div className="ml-auto flex items-center gap-1.5 glass-card-premium rounded-full px-3.5 py-1.5">
-            <Flame className="w-3 h-3 text-secondary" />
-            <span className="text-xs font-bold text-foreground">{Math.round(cartTotals.calories)} kcal</span>
-            <span className="text-[10px] text-muted-foreground/50">|</span>
-            <span className="text-xs font-bold text-secondary">₹{cartTotals.cost.toFixed(0)}</span>
+          <div className="ml-auto flex items-center gap-2">
+            <ThemeToggle theme={theme} onToggle={toggleTheme} />
+            <div className="flex items-center gap-1.5 glass-card-premium rounded-full px-3.5 py-1.5">
+              <Flame className="w-3 h-3 text-secondary" />
+              <span className="text-xs font-bold text-foreground">{Math.round(cartTotals.calories)} kcal</span>
+              <span className="text-[10px] text-muted-foreground/50">|</span>
+              <span className="text-xs font-bold text-secondary">₹{cartTotals.cost.toFixed(0)}</span>
+            </div>
           </div>
         </div>
       </header>
