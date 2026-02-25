@@ -169,4 +169,33 @@
     -ms-overflow-style: none;
     scrollbar-width: none;
   }
+
+  /* AI Chatbot animated gradient */
+  .ai-gradient-animated {
+    background: linear-gradient(135deg, #8b5cf6, #3b82f6, #06b6d4, #ec4899, #8b5cf6);
+    background-size: 300% 300%;
+    animation: ai-gradient-move 4s ease infinite;
+  }
+
+  @keyframes ai-gradient-move {
+    0%, 100% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+  }
+
+  @keyframes ai-pulse {
+    0%, 100% { transform: scale(1); opacity: 1; }
+    50% { transform: scale(1.5); opacity: 0; }
+  }
+
+  @keyframes ai-typing {
+    0%, 100% { opacity: 0.3; transform: translateY(0); }
+    50% { opacity: 1; transform: translateY(-3px); }
+  }
+
+  .scrollbar-thin::-webkit-scrollbar { width: 3px; }
+  .scrollbar-thin::-webkit-scrollbar-track { background: transparent; }
+  .scrollbar-thin::-webkit-scrollbar-thumb { background: hsl(var(--muted-foreground) / 0.15); border-radius: 10px; }
+
+  .scrollbar-none::-webkit-scrollbar { display: none; }
+  .scrollbar-none { -ms-overflow-style: none; scrollbar-width: none; }
 }
