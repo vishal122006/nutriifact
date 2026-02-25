@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Leaf, Flame, Crown } from 'lucide-react';
+import { Leaf, Flame, Crown, LogOut } from 'lucide-react';
 import DailySummary from '@/components/DailySummary';
 import MenuBrowser from '@/components/MenuBrowser';
 import Cart from '@/components/Cart';
@@ -15,7 +15,7 @@ import { foodDatabase } from '@/data/foods';
 
 const Index = () => {
   const [activeTab, setActiveTab] = useState<Tab>('home');
-  const { isLoggedIn, login } = useAuth();
+  const { user, isLoggedIn, login, logout } = useAuth();
   const { theme, colorMode, toggleTheme, toggleColorMode } = useTheme();
   const {
     cart, cartTotals, profile,
@@ -36,7 +36,9 @@ const Index = () => {
               <h1 className="font-display font-bold text-base text-foreground leading-tight">NutriFact</h1>
               <Crown className="w-3 h-3 text-secondary" />
             </div>
-            <p className="text-[10px] text-muted-foreground font-medium">Premium Healthy Ordering</p>
+            <p className="text-[10px] text-muted-foreground font-medium">
+              {isLoggedIn ? `Hi, ${user!.name} 👋` : 'Premium Healthy Ordering'}
+            </p>
           </div>
           <div className="ml-auto flex items-center gap-2">
             <ThemeToggle theme={theme} colorMode={colorMode} onToggleTheme={toggleTheme} onToggleColorMode={toggleColorMode} />
@@ -130,10 +132,13 @@ const Index = () => {
               <h2 className="font-display font-bold text-foreground mb-3">Profile</h2>
               <div className="bg-card rounded-2xl p-6 border border-secondary/10 nutri-shadow-card text-center">
                 <div className="w-16 h-16 rounded-full nutri-gradient mx-auto flex items-center justify-center text-2xl text-primary-foreground mb-3 nutri-shadow-gold">
-                  {profile.name[0]}
+                  {isLoggedIn ? user!.name[0].toUpperCase() : profile.name[0]}
                 </div>
-                <h3 className="font-display font-bold text-foreground">{profile.name}</h3>
-                <p className="text-xs text-muted-foreground capitalize mt-1">{profile.goal.replace('-', ' ')} · {profile.dailyGoal.calories} kcal/day</p>
+                <h3 className="font-display font-bold text-foreground">{isLoggedIn ? user!.name : profile.name}</h3>
+                <p className="text-xs text-muted-foreground capitalize mt-1">
+                  {isLoggedIn && <span className="text-secondary">{user!.mobile} · </span>}
+                  {profile.goal.replace('-', ' ')} · {profile.dailyGoal.calories} kcal/day
+                </p>
               </div>
               <div className="bg-card rounded-2xl p-4 border border-border/40 space-y-2">
                 <p className="text-xs font-bold text-foreground">Daily Targets</p>
@@ -152,6 +157,16 @@ const Index = () => {
                   </div>
                 </div>
               </div>
+
+              {isLoggedIn && (
+                <button
+                  onClick={logout}
+                  className="w-full flex items-center justify-center gap-2 bg-card rounded-2xl p-4 border border-destructive/15 text-destructive hover:bg-destructive/5 transition-colors"
+                >
+                  <LogOut className="w-4 h-4" />
+                  <span className="text-sm font-bold">Logout</span>
+                </button>
+              )}
             </motion.div>
           )}
         </AnimatePresence>
