@@ -5,7 +5,7 @@ import DailySummary from '@/components/DailySummary';
 import MenuBrowser from '@/components/MenuBrowser';
 import Cart from '@/components/Cart';
 import GoalSelector from '@/components/GoalSelector';
-import AISuggestions from '@/components/AISuggestions';
+import FloatingAIChat from '@/components/FloatingAIChat';
 import BottomNav, { Tab } from '@/components/BottomNav';
 import { useNutrition } from '@/hooks/useNutrition';
 import { useAuth } from '@/hooks/useAuth';
@@ -56,7 +56,6 @@ const Index = () => {
               className="space-y-6"
             >
               <DailySummary totals={cartTotals} goals={profile.dailyGoal} />
-              <AISuggestions profile={profile} totals={cartTotals} />
             </motion.div>
           )}
 
@@ -152,6 +151,7 @@ const Index = () => {
         </AnimatePresence>
       </main>
 
+      <FloatingAIChat profile={profile} totals={cartTotals} />
       <BottomNav active={activeTab} onChange={setActiveTab} cartCount={cartTotals.items} />
     </div>
   );
