@@ -3,6 +3,9 @@ import { foodIngredients } from './ingredients';
 
 // Image imports
 import butterChickenImg from '@/assets/food/butter-chicken.jpg';
+import paneerTikkaImg from '@/assets/food/paneer-tikka.jpg';
+import dalTadkaImg from '@/assets/food/dal-tadka.jpg';
+import chickenBiryaniImg from '@/assets/food/chicken-biryani.jpg';
 import pokeBowlImg from '@/assets/food/poke-bowl.jpg';
 import smoothieBowlImg from '@/assets/food/smoothie-bowl.jpg';
 import caesarSaladImg from '@/assets/food/caesar-salad.jpg';
@@ -12,6 +15,21 @@ import avocadoMousseImg from '@/assets/food/avocado-mousse.jpg';
 import almondCroissantImg from '@/assets/food/almond-croissant.jpg';
 import padThaiImg from '@/assets/food/pad-thai.jpg';
 import grilledSalmonImg from '@/assets/food/grilled-salmon.jpg';
+import mushRisottoImg from '@/assets/food/mushroom-risotto.jpg';
+import grilledChickenSteakImg from '@/assets/food/grilled-chicken-steak.jpg';
+import teriyakiTofuImg from '@/assets/food/teriyaki-tofu-bowl.jpg';
+import quinoaSaladImg from '@/assets/food/quinoa-power-salad.jpg';
+import greekSaladImg from '@/assets/food/greek-salad.jpg';
+import eggAvocadoImg from '@/assets/food/egg-avocado-bowl.jpg';
+import tofuPowerImg from '@/assets/food/tofu-power-bowl.jpg';
+import greenJuiceImg from '@/assets/food/green-juice.jpg';
+import proteinShakeImg from '@/assets/food/protein-shake.jpg';
+import berrySmoothieImg from '@/assets/food/berry-smoothie.jpg';
+import mangoSmoothieImg from '@/assets/food/mango-smoothie.jpg';
+import yogurtParfaitImg from '@/assets/food/yogurt-parfait.jpg';
+import chiaPuddingImg from '@/assets/food/chia-pudding.jpg';
+import bananaBreadImg from '@/assets/food/banana-bread.jpg';
+import oatCookieImg from '@/assets/food/oat-cookie.jpg';
 
 // Attach ingredients to food items
 function withIngredients(food: FoodItem): FoodItem {
@@ -32,21 +50,21 @@ export const foodDatabase: FoodItem[] = ([
     calories: 320, protein: 22, carbs: 8, fats: 22, fiber: 1, sugar: 3,
     vitamins: ['Calcium', 'B12'], allergens: ['Dairy'],
     dietaryTags: ['vegetarian', 'high-protein', 'low-carb', 'keto', 'gluten-free'], pricePerServing: 220, servingSize: '6 pieces', servingGrams: 200,
-    description: 'Smoky tandoori-grilled cottage cheese cubes',
+    image: paneerTikkaImg, description: 'Smoky tandoori-grilled cottage cheese cubes',
   },
   {
     id: 'ind-3', name: 'Dal Tadka', emoji: '🍲', category: 'Indian Cuisine',
     calories: 210, protein: 14, carbs: 30, fats: 5, fiber: 8, sugar: 2,
     vitamins: ['Iron', 'Folate', 'B6'], allergens: [],
     dietaryTags: ['vegan', 'high-protein', 'gluten-free'], pricePerServing: 160, servingSize: '1 bowl', servingGrams: 250,
-    description: 'Tempered yellow lentils with cumin and garlic',
+    image: dalTadkaImg, description: 'Tempered yellow lentils with cumin and garlic',
   },
   {
     id: 'ind-4', name: 'Chicken Biryani', emoji: '🍚', category: 'Indian Cuisine',
     calories: 520, protein: 28, carbs: 58, fats: 18, fiber: 3, sugar: 2,
     vitamins: ['B12', 'Iron', 'Zinc'], allergens: [],
     dietaryTags: ['high-protein'], pricePerServing: 250, servingSize: '1 plate', servingGrams: 350,
-    description: 'Fragrant basmati rice layered with spiced chicken', isPopular: true,
+    image: chickenBiryaniImg, description: 'Fragrant basmati rice layered with spiced chicken', isPopular: true,
   },
 
   // === CONTINENTAL ===
@@ -62,14 +80,14 @@ export const foodDatabase: FoodItem[] = ([
     calories: 380, protein: 10, carbs: 52, fats: 14, fiber: 3, sugar: 2,
     vitamins: ['B2', 'D', 'Selenium'], allergens: ['Dairy'],
     dietaryTags: ['vegetarian', 'gluten-free'], pricePerServing: 320, servingSize: '1 bowl', servingGrams: 280,
-    description: 'Creamy arborio rice with wild mushrooms & parmesan',
+    image: mushRisottoImg, description: 'Creamy arborio rice with wild mushrooms & parmesan',
   },
   {
     id: 'con-3', name: 'Grilled Chicken Steak', emoji: '🥩', category: 'Continental',
     calories: 340, protein: 38, carbs: 5, fats: 18, fiber: 1, sugar: 1,
     vitamins: ['B6', 'B12', 'Niacin'], allergens: [],
     dietaryTags: ['high-protein', 'low-carb', 'keto', 'gluten-free'], pricePerServing: 380, servingSize: '200g steak', servingGrams: 200,
-    description: 'Herb-marinated chicken breast with mashed potatoes',
+    image: grilledChickenSteakImg, description: 'Herb-marinated chicken breast with mashed potatoes',
   },
 
   // === ASIAN ===
@@ -85,7 +103,7 @@ export const foodDatabase: FoodItem[] = ([
     calories: 320, protein: 18, carbs: 42, fats: 10, fiber: 5, sugar: 12,
     vitamins: ['Iron', 'Calcium', 'Manganese'], allergens: ['Soy', 'Gluten'],
     dietaryTags: ['vegan', 'high-protein'], pricePerServing: 240, servingSize: '1 bowl', servingGrams: 320,
-    description: 'Glazed tofu over steamed rice with edamame & pickled ginger',
+    image: teriyakiTofuImg, description: 'Glazed tofu over steamed rice with edamame & pickled ginger',
   },
   {
     id: 'asi-3', name: 'Salmon Poke Bowl', emoji: '🍣', category: 'Asian',
@@ -108,14 +126,14 @@ export const foodDatabase: FoodItem[] = ([
     calories: 310, protein: 14, carbs: 38, fats: 12, fiber: 7, sugar: 4,
     vitamins: ['Iron', 'Magnesium', 'C'], allergens: [],
     dietaryTags: ['vegan', 'gluten-free', 'high-protein'], pricePerServing: 260, servingSize: '1 bowl', servingGrams: 280,
-    description: 'Quinoa, roasted veggies, chickpeas, lemon-tahini dressing',
+    image: quinoaSaladImg, description: 'Quinoa, roasted veggies, chickpeas, lemon-tahini dressing',
   },
   {
     id: 'sal-3', name: 'Greek Salad', emoji: '🫒', category: 'Salads',
     calories: 180, protein: 6, carbs: 10, fats: 14, fiber: 3, sugar: 5,
     vitamins: ['C', 'K', 'A'], allergens: ['Dairy'],
     dietaryTags: ['vegetarian', 'low-carb', 'keto', 'gluten-free'], pricePerServing: 200, servingSize: '1 bowl', servingGrams: 220,
-    description: 'Cucumber, tomato, olives, feta cheese with olive oil',
+    image: greekSaladImg, description: 'Cucumber, tomato, olives, feta cheese with olive oil',
   },
 
   // === PROTEIN BOWLS ===
@@ -131,14 +149,14 @@ export const foodDatabase: FoodItem[] = ([
     calories: 390, protein: 22, carbs: 18, fats: 28, fiber: 8, sugar: 2,
     vitamins: ['D', 'K', 'B12', 'Folate'], allergens: ['Eggs'],
     dietaryTags: ['vegetarian', 'high-protein', 'low-carb', 'keto', 'gluten-free'], pricePerServing: 260, servingSize: '1 bowl', servingGrams: 300,
-    description: 'Poached eggs, smashed avocado, cherry tomatoes & seeds',
+    image: eggAvocadoImg, description: 'Poached eggs, smashed avocado, cherry tomatoes & seeds',
   },
   {
     id: 'pro-3', name: 'Tofu Power Bowl', emoji: '🫘', category: 'Protein Bowls',
     calories: 360, protein: 24, carbs: 35, fats: 14, fiber: 7, sugar: 5,
     vitamins: ['Iron', 'Calcium', 'B6'], allergens: ['Soy'],
     dietaryTags: ['vegan', 'high-protein', 'gluten-free'], pricePerServing: 240, servingSize: '1 bowl', servingGrams: 340,
-    description: 'Crispy tofu, brown rice, roasted broccoli & peanut sauce',
+    image: tofuPowerImg, description: 'Crispy tofu, brown rice, roasted broccoli & peanut sauce',
   },
 
   // === HEALTHY DRINKS ===
@@ -154,14 +172,14 @@ export const foodDatabase: FoodItem[] = ([
     calories: 80, protein: 2, carbs: 18, fats: 0.5, fiber: 0, sugar: 14,
     vitamins: ['C', 'K', 'Iron', 'Folate'], allergens: [],
     dietaryTags: ['vegan', 'gluten-free', 'low-carb'], pricePerServing: 150, servingSize: '250ml', servingGrams: 250,
-    description: 'Spinach, celery, apple, ginger & lemon cold-pressed',
+    image: greenJuiceImg, description: 'Spinach, celery, apple, ginger & lemon cold-pressed',
   },
   {
     id: 'drk-3', name: 'Protein Shake', emoji: '🥛', category: 'Healthy Drinks',
     calories: 220, protein: 30, carbs: 15, fats: 5, fiber: 2, sugar: 8,
     vitamins: ['B12', 'D', 'Calcium'], allergens: ['Dairy'],
     dietaryTags: ['high-protein', 'gluten-free'], pricePerServing: 200, servingSize: '400ml', servingGrams: 400,
-    description: 'Whey protein blended with banana, oats & almond milk',
+    image: proteinShakeImg, description: 'Whey protein blended with banana, oats & almond milk',
   },
 
   // === SMOOTHIES ===
@@ -177,14 +195,14 @@ export const foodDatabase: FoodItem[] = ([
     calories: 180, protein: 4, carbs: 36, fats: 3, fiber: 5, sugar: 24,
     vitamins: ['C', 'Antioxidants', 'K'], allergens: [],
     dietaryTags: ['vegan', 'gluten-free'], pricePerServing: 180, servingSize: '400ml', servingGrams: 400,
-    description: 'Mixed berries, banana, Greek yogurt & honey',
+    image: berrySmoothieImg, description: 'Mixed berries, banana, Greek yogurt & honey',
   },
   {
     id: 'smo-3', name: 'Mango Protein Smoothie', emoji: '🥭', category: 'Smoothies',
     calories: 260, protein: 22, carbs: 34, fats: 4, fiber: 3, sugar: 26,
     vitamins: ['C', 'A', 'B12'], allergens: ['Dairy'],
     dietaryTags: ['high-protein', 'gluten-free'], pricePerServing: 200, servingSize: '400ml', servingGrams: 400,
-    description: 'Fresh mango, whey protein, yogurt & turmeric',
+    image: mangoSmoothieImg, description: 'Fresh mango, whey protein, yogurt & turmeric',
   },
 
   // === DESSERTS ===
@@ -200,14 +218,14 @@ export const foodDatabase: FoodItem[] = ([
     calories: 240, protein: 18, carbs: 30, fats: 6, fiber: 3, sugar: 18,
     vitamins: ['B12', 'Calcium', 'Probiotics'], allergens: ['Dairy', 'Nuts'],
     dietaryTags: ['vegetarian', 'high-protein', 'gluten-free'], pricePerServing: 190, servingSize: '1 glass', servingGrams: 250,
-    description: 'Layers of Greek yogurt, honey, granola & fresh fruits',
+    image: yogurtParfaitImg, description: 'Layers of Greek yogurt, honey, granola & fresh fruits',
   },
   {
     id: 'des-3', name: 'Chia Pudding', emoji: '🫧', category: 'Desserts',
     calories: 180, protein: 6, carbs: 20, fats: 8, fiber: 10, sugar: 8,
     vitamins: ['Omega-3', 'Calcium', 'Iron'], allergens: [],
     dietaryTags: ['vegan', 'gluten-free', 'high-protein'], pricePerServing: 160, servingSize: '1 cup', servingGrams: 200,
-    description: 'Chia seeds soaked in coconut milk with mango',
+    image: chiaPuddingImg, description: 'Chia seeds soaked in coconut milk with mango',
   },
 
   // === PASTRIES ===
@@ -223,14 +241,14 @@ export const foodDatabase: FoodItem[] = ([
     calories: 220, protein: 14, carbs: 28, fats: 6, fiber: 3, sugar: 10,
     vitamins: ['B6', 'Potassium', 'Iron'], allergens: ['Gluten', 'Eggs'],
     dietaryTags: ['vegetarian', 'high-protein'], pricePerServing: 120, servingSize: '1 slice', servingGrams: 80,
-    description: 'Whey-enriched banana bread with walnuts',
+    image: bananaBreadImg, description: 'Whey-enriched banana bread with walnuts',
   },
   {
     id: 'pas-3', name: 'Oat Cookie', emoji: '🍪', category: 'Pastries',
     calories: 160, protein: 4, carbs: 22, fats: 7, fiber: 2, sugar: 8,
     vitamins: ['Iron', 'B1'], allergens: ['Gluten'],
     dietaryTags: ['vegetarian'], pricePerServing: 80, servingSize: '1 cookie', servingGrams: 40,
-    description: 'Chewy oat cookie with dark chocolate chips & raisins',
+    image: oatCookieImg, description: 'Chewy oat cookie with dark chocolate chips & raisins',
   },
 ] as FoodItem[]).map(withIngredients);
 
