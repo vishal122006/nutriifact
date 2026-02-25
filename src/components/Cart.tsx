@@ -3,6 +3,8 @@ import { motion } from 'framer-motion';
 import { Trash2, Minus, Plus, Flame, Beef, Wheat, Droplets, AlertTriangle, ShoppingBag } from 'lucide-react';
 import { CartItem } from '@/types/nutrition';
 import Checkout from './Checkout';
+import LoginModal from './LoginModal';
+import { AuthUser } from '@/hooks/useAuth';
 
 interface Props {
   cart: CartItem[];
@@ -11,10 +13,13 @@ interface Props {
   onUpdateQuantity: (id: string, qty: number) => void;
   onRemove: (id: string) => void;
   onClear: () => void;
+  isLoggedIn: boolean;
+  onLogin: (user: AuthUser) => void;
 }
 
-export default function Cart({ cart, cartTotals, goalCalories, onUpdateQuantity, onRemove, onClear }: Props) {
+export default function Cart({ cart, cartTotals, goalCalories, onUpdateQuantity, onRemove, onClear, isLoggedIn, onLogin }: Props) {
   const [showCheckout, setShowCheckout] = useState(false);
+  const [showLogin, setShowLogin] = useState(false);
   const overLimit = cartTotals.calories > goalCalories;
 
   if (cart.length === 0) {
@@ -116,7 +121,13 @@ export default function Cart({ cart, cartTotals, goalCalories, onUpdateQuantity,
 
       {/* Checkout Button */}
       <button
-        onClick={() => setShowCheckout(true)}
+        onClick={() => {
+          if (isLoggedIn) {
+            setShowCheckout(true);
+          } else {
+            setShowLogin(true);
+          }
+        }}
         className="w-full nutri-gradient text-primary-foreground rounded-2xl py-4 text-sm font-bold flex items-center justify-center gap-2 hover:opacity-90 transition-opacity nutri-shadow-gold"
       >
         Proceed to Checkout — ₹{cartTotals.cost.toFixed(0)}
@@ -136,6 +147,17 @@ export default function Cart({ cart, cartTotals, goalCalories, onUpdateQuantity,
         onConfirm={() => {
           setShowCheckout(false);
           onClear();
+        }}
+      />
+
+      {/* Login Modal */}
+      <LoginModal
+        open={showLogin}
+        onClose={() => setShowLogin(false)}
+        onLogin={(user) => {
+          onLogin(user);
+          setShowLogin(false);
+          setShowCheckout(true);
         }}
       />
     </div>
