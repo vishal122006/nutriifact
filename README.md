@@ -1,73 +1,87 @@
-# Welcome to your Lovable project
+# NutriFact
 
-## Project info
+A food-ordering web application concept focused on fitness enthusiasts and health-conscious users. NutriFact is designed to make exploring food options more convenient for people who care about their nutrition.
 
-**URL**: https://lovable.dev/projects/REPLACE_WITH_PROJECT_ID
+## Overview
 
-## How can I edit this code?
+NutriFact is a frontend web application built with React and Tailwind CSS. The project aims to bring food discovery and ordering into a health-conscious experience.
 
-There are several ways of editing your application.
+> **Project status:** Add a brief note here describing what is currently implemented and what is still in progress before presenting this as a production-ready ordering platform.
 
-**Use Lovable**
+## Technology Stack
 
-Simply visit the [Lovable Project](https://lovable.dev/projects/REPLACE_WITH_PROJECT_ID) and start prompting.
+- **Frontend:** React
+- **Styling:** Tailwind CSS
+- **Build tooling:** Vite
+- **Language:** TypeScript
 
-Changes made via Lovable will be committed automatically to this repo.
+The current repository package manifest identifies a Vite + React + TypeScript application with Tailwind CSS. A Node.js-based local development environment is used through npm scripts.
 
-**Use your preferred IDE**
+## Getting Started
 
-If you want to work locally using your own IDE, you can clone this repo and push changes. Pushed changes will also be reflected in Lovable.
+### Prerequisites
 
-The only requirement is having Node.js & npm installed - [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating)
+- Node.js (LTS recommended)
+- npm
 
-Follow these steps:
+### Installation
 
-```sh
-# Step 1: Clone the repository using the project's Git URL.
-git clone <YOUR_GIT_URL>
-
-# Step 2: Navigate to the project directory.
-cd <YOUR_PROJECT_NAME>
-
-# Step 3: Install the necessary dependencies.
-npm i
-
-# Step 4: Start the development server with auto-reloading and an instant preview.
+```bash
+git clone https://github.com/vishal122006/nutriifact.git
+cd nutriifact
+npm install
 npm run dev
 ```
 
-**Edit a file directly in GitHub**
+Vite will print the local development URL in your terminal.
 
-- Navigate to the desired file(s).
-- Click the "Edit" button (pencil icon) at the top right of the file view.
-- Make your changes and commit the changes.
+### Available Scripts
 
-**Use GitHub Codespaces**
+| Command | Description |
+| --- | --- |
+| `npm run dev` | Start the local development server |
+| `npm run build` | Build the application for production |
+| `npm run preview` | Preview the production build locally |
+| `npm run lint` | Run ESLint |
+| `npm run test` | Run the test suite |
 
-- Navigate to the main page of your repository.
-- Click on the "Code" button (green button) near the top right.
-- Select the "Codespaces" tab.
-- Click on "New codespace" to launch a new Codespace environment.
-- Edit files directly within the Codespace and commit and push your changes once you're done.
+## Project Structure
 
-## What technologies are used for this project?
+```text
+nutriifact/
+├── public/          # Static assets
+├── src/             # Application source code
+├── index.html       # Vite HTML entry point
+├── package.json     # Dependencies and scripts
+├── tailwind.config.ts
+├── vite.config.ts
+└── README.md
+```
 
-This project is built with:
+## Roadmap
 
-- Vite
-- TypeScript
-- React
-- shadcn-ui
-- Tailwind CSS
+Potential areas for future development:
 
-## How can I deploy this project?
+- Meal discovery and food-category browsing
+- Nutrition information for listed meals
+- User preferences for health-conscious choices
+- Cart and checkout workflow
+- Responsive experience across mobile and desktop
 
-Simply open [Lovable](https://lovable.dev/projects/REPLACE_WITH_PROJECT_ID) and click on Share -> Publish.
+## Screenshots
 
-## Can I connect a custom domain to my Lovable project?
+Add current application screenshots in a `screenshots/` directory and embed them here once available.
 
-Yes, you can!
+## Contributions
 
-To connect a domain, navigate to Project > Settings > Domains and click Connect Domain.
+This is a personal portfolio project. Suggestions and feedback are welcome through GitHub issues.
 
-Read more here: [Setting up a custom domain](https://docs.lovable.dev/features/custom-domain#custom-domain)
+## Author
+
+**Vishal Dharanipathy**
+
+- GitHub: [@vishal122006](https://github.com/vishal122006)
+
+---
+
+Built as a learning and portfolio project.
